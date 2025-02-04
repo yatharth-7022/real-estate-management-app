@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { Button } from "../components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SIGN_UP } from "../../api";
 export const SignUp = () => {
   const [formData, setFormData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -12,15 +15,31 @@ export const SignUp = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch(SIGN_UP, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-    const data = await res.json();
-    console.log(data);
+    try {
+      setIsLoading(true);
+      const res = await fetch(SIGN_UP, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      console.log(data);
+      if (data.success === false) {
+        setIsLoading(false);
+        setError(data.message);
+        return;
+      }
+      setIsLoading(false);
+      setError(null);
+      navigate("/signin");
+    } catch (error) {
+      console.log(error);
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <div className="p-3 max-w-lg mx-auto">
@@ -48,7 +67,9 @@ export const SignUp = () => {
           onChange={handleChange}
         />
         <div className="flex justify-center">
-          <Button variant="secondary">SIGN UP</Button>{" "}
+          <Button disabled={isLoading} variant="secondary">
+            {isLoading ? "Just a minute!" : "Sign Up"}
+          </Button>
         </div>
       </form>
       <div className="flex justify-end mt-3 gap-1">
