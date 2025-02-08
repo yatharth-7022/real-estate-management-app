@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "../Common/ui/button";
 import { Link } from "react-router-dom";
 import useSignIn from "../hooks/useSignIn";
+import GoogleSignInButton from "../Common/ui/GoogleSignInButton";
 export const SignIn = () => {
   const [formData, setFormData] = useState({});
   const { mutate: signin, isLoading, error } = useSignIn();
@@ -33,10 +34,12 @@ export const SignIn = () => {
           placeholder="Password"
           onChange={handleChange}
         />
-        <div className="flex justify-center">
+        <div className="flex flex-col gap-3 justify-center">
+          {" "}
           <Button disabled={isLoading} variant="secondary">
             {isLoading ? "Just a minute!" : "Sign In"}
           </Button>
+          <GoogleSignInButton />
         </div>
       </form>
       {error && <p className="text-red-500">{error.message}</p>}
