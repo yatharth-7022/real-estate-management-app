@@ -1,2 +1,3 @@
-export const SIGN_UP = "./api/auth/signup";
-export const SIGN_IN = "./api/auth/signin";
+export const SIGN_UP = "/auth/signup";
+export const SIGN_IN = "/auth/signin";
+export const GET_USER = "/auth/user";

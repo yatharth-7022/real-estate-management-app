@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { Button } from "../components/ui/button";
-import { Link, useNavigate } from "react-router-dom";
-import { SIGN_IN } from "../api";
+import { Button } from "../Common/ui/button";
+import { Link } from "react-router-dom";
+import useSignIn from "../hooks/useSignIn";
 export const SignIn = () => {
   const [formData, setFormData] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
+  const { mutate: signin, isLoading, error } = useSignIn();
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -15,31 +13,7 @@ export const SignIn = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      setIsLoading(true);
-      const res = await fetch(SIGN_IN, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
-      console.log(data);
-      if (data.success === false) {
-        setIsLoading(false);
-        setError(data.message);
-        return;
-      }
-      setIsLoading(false);
-      setError(null);
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-      setError(error);
-    } finally {
-      setIsLoading(false);
-    }
+    signin(formData);
   };
   return (
     <div className="p-3 max-w-lg mx-auto">
@@ -65,6 +39,8 @@ export const SignIn = () => {
           </Button>
         </div>
       </form>
+      {error && <p className="text-red-500">{error.message}</p>}
+
       <div className="flex justify-end mt-3 gap-1">
         <p>Don&apos;t have an account ?</p>
         <Link className="text-blue-700" to="/signup">
