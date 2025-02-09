@@ -69,7 +69,7 @@ export const googleSignIn = async (req, res, next) => {
       res
         .cookie("access_token", token, { httpOnly: true })
         .status(200)
-        .json(others);
+        .json({ token, user: others });
     } else {
       const generatedPassword =
         Math.random().toString(36).slice(-8) +
@@ -89,7 +89,7 @@ export const googleSignIn = async (req, res, next) => {
       res
         .cookie("access_token", token, { httpOnly: true })
         .status(200)
-        .json(others);
+        .json({ token, user: others });
     }
   } catch (error) {
     next(error);

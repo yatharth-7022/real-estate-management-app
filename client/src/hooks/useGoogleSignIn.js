@@ -12,8 +12,13 @@ export const useGoogleSignIn = () => {
       const data = API.post(GET_GOOGLE_SIGNIN, userData);
       return data;
     },
-    onSuccess: (data) => {
+    onSuccess: ({ data }) => {
+      if (!data.token) {
+        console.warn("No token received from backend!");
+        return;
+      }
       localStorage.setItem("token", data.token);
+      localStorage.setItem("googleUser", JSON.stringify(data.user));
       queryClient.setQueryData(["googleUser"], data.user);
       navigate("/");
     },
