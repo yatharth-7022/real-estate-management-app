@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema(
     avatar: {
       type: String,
       default:
-        "https://www.google.com/url?sa=i&url=https%3A%2F%2Fthequotecircle.org%2Fblank-profile-picture-hd%2F&psig=AOvVaw3MrgpmZ1gczkIpW1Fsywk-&ust=1739177372994000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPi8v-SatosDFQAAAAAdAAAAABAE",
+        "https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-female-user-profile-vector-illustration-isolated-background-women-profile-sign-business-concept_157943-38866.jpg?semt=ais_hybrid",
     },
   },
   { timestamps: true }
