@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "../Common/ui/button";
 import { Link } from "react-router-dom";
 import useSignUp from "../hooks/useSignUp";
-import GoogleSignInButton from "../Common/ui/GoogleSignInButton";
+import GoogleSignInButton from "../Components/OAuth";
 export const SignUp = () => {
   const [formData, setFormData] = useState({});
 

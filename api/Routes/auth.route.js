@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  googleSignIn,
   handleSignIn,
   signup,
   verifyToken,
@@ -11,5 +12,6 @@ const router = express.Router();
 router.post("/signup", signup);
 router.post("/signin", signin);
 router.get("/user", verifyToken, handleSignIn);
+router.post("/google", googleSignIn);
 
 export default router;
