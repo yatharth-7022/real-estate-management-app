@@ -2,7 +2,7 @@ import { BrowserRouter } from "react-router-dom";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
-import { Profile } from "./pages/Profile";
+import Profile from "./pages/Profile";
 import { About } from "./pages/About";
 import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
