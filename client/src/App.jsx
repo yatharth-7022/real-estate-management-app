@@ -8,6 +8,8 @@ import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
 import { Header } from "./Components/Header";
 import { PrivateRoute } from "./Components/PrivateRoute";
+import OAuth from "./Components/OAuth";
+import OAuthRedirectHandler from "./Components/OAuthRedirectHandler";
 
 export default function App() {
   return (
@@ -20,6 +22,8 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
+        {/* Google OAuth callback route */}
+        <Route path="/auth/callback" element={<OAuthRedirectHandler />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>

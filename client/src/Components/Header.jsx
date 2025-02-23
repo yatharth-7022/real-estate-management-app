@@ -9,9 +9,9 @@ export const Header = () => {
 
   useEffect(() => {
     let user = queryClient.getQueryData(["googleUser"]);
+
     if (!user) {
       const storedUser = localStorage.getItem("googleUser");
-      // console.log(storedUser, "google user");
 
       if (storedUser && storedUser !== "undefined") {
         try {
@@ -27,6 +27,7 @@ export const Header = () => {
     setGoogleUser(user);
   }, [queryClient]);
 
+  console.log(googleUser, "this is google user");
   return (
     <div>
       <header className="bg-slate-200 shadow-md">
@@ -60,7 +61,7 @@ export const Header = () => {
               {googleUser ? (
                 <img
                   className="rounded-full h-7 w-7 object-cover"
-                  src={googleUser.avatar}
+                  src={googleUser?.avatar}
                   alt="Profile"
                 />
               ) : (

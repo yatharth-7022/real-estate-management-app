@@ -1,24 +1,29 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { app } from "../firebase";
-import { useGoogleSignIn } from "../hooks/useGoogleSignIn";
+import { supabase } from "../supabase";
+import { useNavigate } from "react-router-dom";
+
 const OAuth = () => {
-  const { mutate: signin } = useGoogleSignIn();
+  const navigate = useNavigate();
+
   const handleGoogleClick = async () => {
     try {
-      const provider = new GoogleAuthProvider();
-      const auth = getAuth(app);
-
-      const result = await signInWithPopup(auth, provider);
-      signin({
-        email: result.user.email,
-        name: result.user.displayName,
-        photo: result.user.photoURL,
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: `${window.location.origin}/auth/callback`,
+        },
       });
-      console.log(result, "this is result");
+
+      if (error) {
+        console.error("Error during sign-in:", error);
+        throw error;
+      }
+
+      // No need to navigate here - the OAuth flow will handle the redirect
     } catch (err) {
-      console.log("Coult not authenticate from google ", err);
+      console.error("Error during authentication:", err);
     }
   };
+
   return (
     <button
       onClick={handleGoogleClick}
