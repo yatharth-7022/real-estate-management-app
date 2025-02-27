@@ -10,6 +10,7 @@ import { Header } from "./Components/Header";
 import { PrivateRoute } from "./Components/PrivateRoute";
 import OAuth from "./Components/OAuth";
 import OAuthRedirectHandler from "./Components/OAuthRedirectHandler";
+import { CreateListing } from "./pages/CreateListing";
 
 export default function App() {
   return (
@@ -18,11 +19,11 @@ export default function App() {
       <Routes>
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
+          <Route path="/create-listing" element={<CreateListing />} />
         </Route>
         <Route path="/about" element={<About />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
-        {/* Google OAuth callback route */}
         <Route path="/auth/callback" element={<OAuthRedirectHandler />} />
         <Route path="/" element={<Home />} />
       </Routes>

@@ -1,6 +1,7 @@
 import { Button } from "../Common/ui/button";
 import { useRef, useState } from "react";
 import { supabase } from "../supabase";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const storedUser = localStorage.getItem("googleUser");
@@ -122,6 +123,9 @@ const Profile = () => {
             className="border p-3 rounded-xl"
           />
           <Button variant="secondary">Update</Button>
+          <Link to={"/create-listing"}>
+            <Button variant="tertiary">Create Listing</Button>
+          </Link>
         </form>
       </div>
       <div className="flex text-red-600 font-medium justify-between w-full">
