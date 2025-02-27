@@ -33,6 +33,7 @@ app.use(
 //  API Routes
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/listing", listingRouter);
 
 // Global Error Handler
 app.use((err, req, res, next) => {

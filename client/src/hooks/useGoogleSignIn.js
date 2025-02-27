@@ -28,7 +28,7 @@ export const useGoogleSignIn = () => {
 
       localStorage.setItem("token", data.token);
       localStorage.setItem("googleUser", JSON.stringify(data.user));
-      queryClient.setQueryData(["googleUser"], data.user);
+      queryClient.setQueryData(["googleUser"], data.user.user_metadata);
 
       navigate("/");
     },

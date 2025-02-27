@@ -17,8 +17,6 @@ const OAuth = () => {
         console.error("Error during sign-in:", error);
         throw error;
       }
-
-      // No need to navigate here - the OAuth flow will handle the redirect
     } catch (err) {
       console.error("Error during authentication:", err);
     }

@@ -26,6 +26,7 @@ export const Header = () => {
 
     setGoogleUser(user);
   }, [queryClient]);
+  console.log(googleUser, "this is google user");
 
   console.log(googleUser, "this is google user");
   return (

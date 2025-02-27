@@ -3,3 +3,4 @@ export const test = (req, res) => {
     message: "User route is working",
   });
 };
+export const updateUser = (req, res, next) => {};
